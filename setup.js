@@ -37,6 +37,18 @@ db.serialize(() => {
     ["Fleece Cap", 19.50, "Hats & Beanies", "images/fleece-cap.jpg", "Fleece-lined cap for extra warmth on cold days."]
   ];
 
+  db.run("DROP TABLE IF EXISTS cart_items");
+  db.run(`
+    CREATE TABLE cart_items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      product_id INTEGER NOT NULL,
+      quantity INTEGER DEFAULT 1,
+      FOREIGN KEY (user_id) REFERENCES users(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
+    )
+  `);
+
   const stmt = db.prepare(`
     INSERT INTO products (name, price, category, image, description)
     VALUES (?, ?, ?, ?, ?)

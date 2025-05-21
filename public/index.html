@@ -6,49 +6,23 @@
     <title>Cascadia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
 
     <header class="site-header">
-        <div class="header-left">
-    
-        </div>
+        <div class="header-left"></div>
         <div class="site-logo">Cascadia</div>
         <div class="header-right">
-            <span class="icon search-trigger"><i class="fas fa-search"></i></span>
             <a href="profile.html"><span class="icon">👤</span></a>
             <span class="icon menu-trigger"><i class="fas fa-bars"></i></span>
         </div>
     </header>
-
-    <!-- search overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-header">
-            <div class="search-input-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="globalSearchInput" class="search-input" placeholder="Search products...">
-            </div>
-            <button class="cancel-btn" id="cancelSearch">Cancel</button>
-            
-        </div>
-        <div class="search-content">
-            <h2 class="popular-title">Popular Products</h2>
-            <ul class="popular-items">
-                <li class="popular-item">Sweater</li>
-                <li class="popular-item">T-Shirt</li>
-                <li class="popular-item">Shoes</li>
-                <li class="popular-item">Hats</li>
-            </ul>
-        </div>
-    </div>
 
     <!-- nav menu overlay -->
     <div class="nav-overlay" id="navOverlay">
         <div class="nav-header">
             <a href="login.html" class="nav-login-link">Login</a>
             <div class="nav-controls">
-                <span class="icon nav-search-icon"><i class="fas fa-search"></i></span>
                 <span class="icon nav-close" id="closeNavMenu"><i class="fas fa-times"></i></span>
             </div>
         </div>
@@ -99,12 +73,8 @@
             <a href="products.html?category=Boots%20%26%20Shoes" class="category-card">Boots & Shoes</a>
             <a href="products.html?category=Backpacks" class="category-card">Backpacks</a>
             <a href="products.html?category=Hats%20%26%20Beanies" class="category-card">Hats & Beanies</a>
-            
-
         </div>
     </section>
-
-    
 
     <footer class="site-footer">
         <p>© 2025 Cascadia. All rights reserved.</p>
@@ -112,34 +82,6 @@
     </footer>
 
     <script>
-        // the search overlay functionality
-        const searchTrigger = document.querySelector('.search-trigger');
-        const searchOverlay = document.getElementById('searchOverlay');
-        const cancelSearch = document.getElementById('cancelSearch');
-        const searchInput = document.querySelector('.search-input');
-        
-        searchTrigger.addEventListener('click', function() {
-            searchOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-            searchInput.focus(); 
-        });
-        
-        cancelSearch.addEventListener('click', function() {
-            searchOverlay.style.display = 'none';
-            document.body.style.overflow = ''; 
-        });
-        
-        //maybe add mobile view if time permits
-        
-        // Popular items click handling
-        const popularItems = document.querySelectorAll('.popular-item');
-        popularItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const searchTerm = this.textContent.trim();
-                searchInput.value = searchTerm;
-            });
-        });
-
         // Navigation menu functionality
         const menuTrigger = document.querySelector('.menu-trigger');
         const navOverlay = document.getElementById('navOverlay');
@@ -152,36 +94,8 @@
         
         closeNavMenu.addEventListener('click', function() {
             navOverlay.style.display = 'none';
-            document.body.style.overflow = ''; // 
+            document.body.style.overflow = ''; 
         });
-        
-        // connnecting the search icon in nav menu to open search overlay
-        const navSearchIcon = document.querySelector('.nav-search-icon');
-        navSearchIcon.addEventListener('click', function() {
-            navOverlay.style.display = 'none';
-            searchOverlay.style.display = 'block';
-            searchInput.focus();
-        });
-
-        // this redirects the search input to products page with query string
-const globalSearchInput = document.getElementById('globalSearchInput');
-const globalSearchSubmit = document.getElementById('globalSearchSubmit');
-
-globalSearchSubmit.addEventListener('click', () => {
-    const query = globalSearchInput.value.trim();
-    if (query) {
-        window.location.href = `products.html?q=${encodeURIComponent(query)}`;
-    }
-});
-
-globalSearchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        globalSearchSubmit.click();
-    }
-});
-
-
     </script>
 </body>
 </html>
